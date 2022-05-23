@@ -6,7 +6,6 @@ using namespace std;
  bool inpar(string s)
 {
     stack<char> st;
-    char top;
     for(int i=0;i<s.size();i++)
     {
         if(s[i]== '['|| s[i]== '{' || s[i] == '(')
@@ -20,6 +19,7 @@ using namespace std;
                 
             }
             else{
+                  char top;
                 top=st.top();
                 if((s[i]==']' && top=='[') || (s[i]=='}' && top=='{') || (s[i]==')' && top=='(') )
                 {
@@ -39,7 +39,7 @@ using namespace std;
             {
                 return false;
             }
-            return (st.empty());
+            
 }
 
 int main()
