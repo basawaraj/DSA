@@ -3,32 +3,27 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> dailyTemperatures(vector<int>& temperatures)
-    {
-        int i;
-        int len=temperatures.size();
+    vector<int> dailyTemperatures(vector<int>& arr) {
+        
+        int n = arr.size();
+        vector<int> ans(n, 0);
 
-      vector<int> answer(len,0);
-        stack<int>stck;
-
-        for( i=0; i<len; i++)
+        stack<int> s;
+        for(auto i = n-1; i >= 0; i--)
         {
-            while(!stck.empty() && temperatures[stck.top()]<temperatures[i])
-            {
-                answer[stck.top()]=(i-stck.top());
-                stck.pop();
-            }
-            stck.push(i);
+            while(!s.empty() && arr[s.top()] <= arr[i])
+             s.pop();
+            if(!s.empty())
+                ans[i] = (s.top()-i); 
+            s.push(i);          
         }
-
-        for( i=0; i<len; i++)
+         for(auto i=0; i<n; i++)
         {
-            cout<<answer[i]<<" ";
+            cout<<ans[i]<<" ";
         }
-     return answer;
+        return ans;
     }
 };
-
 int main()
 {
    vector <int>  temperatures{73,74,75,71,69,72,76,73};
